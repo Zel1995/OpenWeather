@@ -17,7 +17,7 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { MainViewModel() }
+    viewModel { MainViewModel(get()) }
 }
 
 fun provideRetrofit(): OpenWeatherMapApi {
