@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer;
 
 import com.example.openweather.R;
 import com.example.openweather.domain.Weather;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.jetbrains.annotations.NotNull;
@@ -24,6 +25,8 @@ import kotlin.Lazy;
 import static org.koin.android.compat.SharedViewModelCompat.sharedViewModel;
 
 public class MainFragment extends Fragment {
+    private static final String LAST_REQUEST = "LAST_REQUEST";
+    private MaterialButton button;
     private TextInputEditText editText;
     private TextView tvCity;
     private TextView tvTemperature;
@@ -48,8 +51,20 @@ public class MainFragment extends Fragment {
         initView(view);
         initViewModel();
         if(savedInstanceState == null){
-            viewModel.getValue().fetchWeather("141800,ru");
+            viewModel.getValue().fetchWeather(LAST_REQUEST);
         }
+        setSearchButtonClickListener();
+    }
+
+    private void setSearchButtonClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String result = editText.getText().append(",ru").toString();
+                editText.setText("");
+                viewModel.getValue().fetchWeather(result);
+            }
+        });
     }
 
     private void initViewModel() {
@@ -82,5 +97,6 @@ public class MainFragment extends Fragment {
         tvSunrise = view.findViewById(R.id.info_sunrise);
         tvSunset = view.findViewById(R.id.info_sunset);
         editText = view.findViewById(R.id.edit_text);
+        button = view.findViewById(R.id.search_btn);
     }
 }

@@ -6,5 +6,5 @@ data class Weather(
     val windSpeed:Double,
     val humidity:Int,
     val visibility:Int,
-    val timeOfSunrise:String,
-    val timeOfSunset:String)
+    val timeOfSunrise:Long,
+    val timeOfSunset:Long)

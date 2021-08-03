@@ -7,6 +7,8 @@ import com.example.openweather.domain.Repository.Repository
 import com.example.openweather.domain.Repository.Success
 import com.example.openweather.domain.Weather
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.*
+
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
     private val _weatherLiveData = MutableLiveData<Weather?>()
@@ -17,9 +19,11 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     fun fetchWeather(zipCode: String) {
         viewModelScope.launch {
-            when (val result = repository.getWeather(zipCode)) {
-                is Success -> _weatherLiveData.value = result.value
-                is Error -> _errorLiveData.value = result.printStackTrace().toString()
+            repository.getWeather(zipCode).collect {
+                when(it) {
+                    is Success -> _weatherLiveData.value = it.value
+                    is Error -> _errorLiveData.value = it.printStackTrace().toString()
+                }
             }
         }
     }
