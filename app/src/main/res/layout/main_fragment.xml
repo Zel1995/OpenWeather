@@ -7,158 +7,210 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/zip_code"
-        android:layout_margin="@dimen/default_small_margin"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintEnd_toStartOf="@+id/search_btn"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text"
+        <androidx.appcompat.widget.Toolbar
+            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent"
+            app:title="@string/app_name">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/search_btn"
-        android:layout_width="wrap_content"
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_small_margin"
-        android:text="@string/get_weather"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
+        android:backgroundTint="@color/cardViewColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/zip_title"
+                style="@style/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search by Zip Code"
+                app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="0dp"
+                app:hintTextColor="@color/white"
+                app:boxStrokeColor="@color/teal_200"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_small_margin"
+                android:backgroundTint="@color/cardViewColor"
+                android:hint="@string/zip_code"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/search_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/zip_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cardViewColor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_margin="@dimen/default_small_margin"
+                android:text="@string/get_weather"
+                android:backgroundTint="@color/grey"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textInputLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
     <TextView
         android:id="@+id/title_city_name"
+        style="@style/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/location"
-        style="@style/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/card" />
 
     <TextView
         android:id="@+id/info_city_name"
+        style="@style/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/infoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_city_name" />
 
     <TextView
         android:id="@+id/title_temperature"
+        style="@style/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/temp"
-        style="@style/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_city_name" />
 
     <TextView
         android:id="@+id/info_temperature"
+        style="@style/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/infoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_temperature" />
+
     <TextView
         android:id="@+id/title_wind_speed"
+        style="@style/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/wind_speed"
-        style="@style/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_temperature" />
 
     <TextView
         android:id="@+id/info_wind_speed"
+        style="@style/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/infoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_wind_speed" />
+
     <TextView
         android:id="@+id/title_humidity"
+        style="@style/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/humidity"
-        style="@style/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_wind_speed" />
+
     <TextView
         android:id="@+id/info_humidity"
+        style="@style/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/infoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_humidity" />
 
     <TextView
         android:id="@+id/title_visibility"
+        style="@style/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/visibility"
-        style="@style/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_humidity" />
 
     <TextView
         android:id="@+id/info_visibility"
+        style="@style/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/infoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_visibility" />
+
     <TextView
         android:id="@+id/title_sunrise"
+        style="@style/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/time_of_sunrise"
-        style="@style/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_visibility" />
 
     <TextView
         android:id="@+id/info_sunrise"
+        style="@style/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/infoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_sunrise" />
 
     <TextView
         android:id="@+id/title_sunset"
+        style="@style/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/time_of_sunset"
-        style="@style/titleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_sunrise" />
 
     <TextView
         android:id="@+id/info_sunset"
+        style="@style/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/infoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_sunset" />

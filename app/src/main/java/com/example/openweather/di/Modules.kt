@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 const val BASE_URL = "https://api.openweathermap.org"
 
 val repositoryModule = module {
-    factory <Repository>{ RepositoryImpl(get(),get()) }
+    factory<Repository> { RepositoryImpl(get(), get()) }
     factory { provideRetrofit() }
 }
 
@@ -33,6 +33,8 @@ fun provideRetrofit(): OpenWeatherMapApi {
         .addConverterFactory(GsonConverterFactory.create()).build()
     return retrofit.create(OpenWeatherMapApi::class.java)
 }
+
 fun provideWeatherDao(application: Application): WeatherDao {
-    return Room.databaseBuilder(application, WeatherDataBase::class.java,"WeatherDataBase").build().weatherDao()
+    return Room.databaseBuilder(application, WeatherDataBase::class.java, "WeatherDataBase").build()
+        .weatherDao()
 }

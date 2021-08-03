@@ -4,8 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Sys(
     @SerializedName("sunrise")
-    val sunrise:Long,
+    val sunrise: Long,
     @SerializedName("sunset")
-    val sunset:Long,
-
-    )
+    val sunset: Long,
+)

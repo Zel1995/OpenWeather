@@ -9,7 +9,7 @@ import androidx.room.Query
 interface WeatherDao {
 
     @Query("SELECT * FROM WeatherEntity WHERE id = :id")
-    suspend fun weatherForZipCode(id:String):WeatherEntity?
+    suspend fun weatherForZipCode(id: String): WeatherEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(entity: WeatherEntity)

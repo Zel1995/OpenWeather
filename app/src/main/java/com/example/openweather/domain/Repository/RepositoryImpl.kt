@@ -4,7 +4,6 @@ import com.example.openweather.domain.Weather
 import com.example.openweather.domain.network.OpenWeatherMapApi
 import com.example.openweather.domain.storage.WeatherDao
 import com.example.openweather.domain.storage.WeatherEntity
-import com.example.openweather.ui.main.MainFragment
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -12,9 +11,10 @@ class RepositoryImpl(
     private val openWeatherMapApi: OpenWeatherMapApi,
     private val weatherDao: WeatherDao
 ) : Repository {
-    companion object{
-     const val LAST_REQUEST = "LAST_REQUEST"
+    companion object {
+        const val LAST_REQUEST = "LAST_REQUEST"
     }
+
     override suspend fun getWeather(zipCode: String): Flow<RepositoryResult<Weather>> = flow {
         val cachedWeatherInfo = weatherDao.weatherForZipCode(zipCode)
         cachedWeatherInfo?.let {
@@ -42,7 +42,7 @@ class RepositoryImpl(
                 response.sys.sunset
             )
             weatherDao.add(weatherEntity)
-            weatherDao.add(weatherEntity.copy(id = LAST_REQUEST ))
+            weatherDao.add(weatherEntity.copy(id = LAST_REQUEST))
             with(response) {
                 val weather = Weather(
                     name,

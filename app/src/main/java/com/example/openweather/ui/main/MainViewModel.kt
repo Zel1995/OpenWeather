@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.openweather.domain.Repository.Repository
 import com.example.openweather.domain.Repository.Success
 import com.example.openweather.domain.Weather
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.*
 
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
@@ -20,7 +20,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     fun fetchWeather(zipCode: String) {
         viewModelScope.launch {
             repository.getWeather(zipCode).collect {
-                when(it) {
+                when (it) {
                     is Success -> _weatherLiveData.value = it.value
                     is Error -> _errorLiveData.value = it.printStackTrace().toString()
                 }
