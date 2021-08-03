@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 const val BASE_URL = "https://api.openweathermap.org"
 
 val repositoryModule = module {
-    factory <Repository>{RepositoryImpl(get())}
-    factory { provideRetrofit() }
+    single <Repository>{ RepositoryImpl(get()) }
+    single { provideRetrofit() }
 }
 
 val viewModelModule = module {

@@ -17,7 +17,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     fun fetchWeather(zipCode: String) {
         viewModelScope.launch {
-            when(val result = repository.getWeather(zipCode)){
+            when (val result = repository.getWeather(zipCode)) {
                 is Success -> _weatherLiveData.value = result.value
                 is Error -> _errorLiveData.value = result.printStackTrace().toString()
             }

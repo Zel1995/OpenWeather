@@ -18,6 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import org.jetbrains.annotations.NotNull;
 
+
 import kotlin.Lazy;
 
 import static org.koin.android.compat.SharedViewModelCompat.sharedViewModel;
@@ -31,7 +32,7 @@ public class MainFragment extends Fragment {
     private TextView tvVisibility;
     private TextView tvSunrise;
     private TextView tvSunset;
-    private final Lazy<MainViewModel> viewModel = sharedViewModel(this, MainViewModel.class);
+    final Lazy<MainViewModel> viewModel = sharedViewModel(this, MainViewModel.class);
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -58,10 +59,10 @@ public class MainFragment extends Fragment {
                  tvCity.setText(weather.getCityName());
                  tvTemperature.setText(String.valueOf(weather.getTemperature()));
                  tvWindSpeed.setText(String.valueOf(weather.getWindSpeed()));
-                 tvHumidity.setText(weather.getHumidity());
-                 tvVisibility.setText(weather.getVisibility());
-                 tvSunrise.setText(weather.getTimeOfSunrise());
-                 tvSunset.setText(weather.getTimeOfSunset());
+                 tvHumidity.setText(String.valueOf(weather.getHumidity()));
+                 tvVisibility.setText(String.valueOf(weather.getVisibility()));
+                 tvSunrise.setText(String.valueOf(weather.getTimeOfSunrise()));
+                 tvSunset.setText(String.valueOf(weather.getTimeOfSunset()));
             }
         });
         viewModel.getValue().getErrorLiveData().observe(getViewLifecycleOwner(), new Observer<String>() {
