@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">OpenWeather</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="location">Location</string>
+    <string name="temp">Temperature</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="humidity">Humidity</string>
+    <string name="visibility">Visability</string>
+    <string name="time_of_sunrise">Time of sunrise</string>
+    <string name="time_of_sunset">Time of sunset</string>
+    <string name="get_weather">get weather</string>
 </resources>
